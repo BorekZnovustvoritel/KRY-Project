@@ -197,17 +197,19 @@ class FileShareApp:
             text="Choose a file to be sent",
             command=lambda: self.get_file(app_window),
         )
-        open_file_button.grid(column=0, row=1,sticky=EW, padx=10)
+        open_file_button.grid(column=0, row=1,sticky=EW, padx=10, pady=5)
         # List friends usernames
         list_friends_button = Button(
             app_window, text="List friends", command=lambda: self.show_friends()
         )
-        list_friends_button.grid(column=0,row=2, sticky=EW, padx=10)
+        list_friends_button.grid(column=0,row=2, sticky=EW, padx=10, pady=5)
 
         # Choose target for file sending
         transfer_target_entry = Entry(app_window)
         transfer_target_entry.grid(column=1,row=2, padx=10)
+        transfer_target_entry.insert(0,"Input friend name here or use friend list to choose one")
         self.target_field = transfer_target_entry
+        
 
         def send_file():
             if not self.file_path:
@@ -252,7 +254,7 @@ class FileShareApp:
             text="SEND FILE",
             command=lambda: send_file(),
         )
-        send_file_button.grid(row=4, sticky=EW, padx=10)
+        send_file_button.grid(row=4, sticky=EW, padx=10,pady=5)
 
         # Show outbound queue
         show_outbound_button = Button(
@@ -260,7 +262,7 @@ class FileShareApp:
             text="List outgoing queue",
             command=lambda: self.show_outgoing_queue(),
         )
-        show_outbound_button.grid(column=0, row=3, sticky=EW, padx=10)
+        show_outbound_button.grid(column=0, row=3, sticky=EW, padx=10,pady=5)
 
         # Show inbound queue
         show_inbound_button = Button(
@@ -268,14 +270,14 @@ class FileShareApp:
             text="List incoming queue",
             command=lambda: self.show_incoming_queue(),
         )
-        show_inbound_button.grid(column=1,row=3, sticky=EW, padx=10)
+        show_inbound_button.grid(column=1,row=3, sticky=EW, padx=10,pady=5)
 
         show_non_friends_button = Button(
             app_window,
             text="List Non friends in DB",
             command=lambda: self.show_non_friends(),
         )
-        show_non_friends_button.grid(column=1,row=1, sticky=EW, padx=10)
+        show_non_friends_button.grid(column=1,row=1, sticky=EW, padx=10,pady=5)
 
         app_window.mainloop()
 
