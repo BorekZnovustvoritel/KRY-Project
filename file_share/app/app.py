@@ -171,6 +171,19 @@ class FileShareApp:
         befriend_button.pack()
         top.mainloop()
 
+    def get_own_fingerprint(self):
+        top = Tk()
+        fingerprint = self.get_my_fingerprint()
+        finger_label = Label(top, text=fingerprint)
+        finger_label.pack()
+
+    def get_friends_fingerprint(self, name):
+        top = Tk()
+        fingerprint = self.get_user_fingerprint(username=name)
+        print(fingerprint)
+        fingerprint_label = Label(top, text=fingerprint)
+        fingerprint_label.pack()
+
     def start(self):
         """Start the application."""
         print("APP HAS STARTED")
@@ -281,6 +294,38 @@ class FileShareApp:
         )
         show_non_friends_button.grid(column=1, row=1, sticky=EW, padx=10, pady=5)
 
+        show_own_fingerprint_button = Button(
+            app_window,
+            text="Show  my own fingerprint",
+            command=lambda: self.get_own_fingerprint(),
+        )
+        show_own_fingerprint_button.grid(column=0, row=5, sticky=EW, padx=10, pady=5)
+
+        show_friends_fingerprint_entry = Entry(app_window)
+
+        show_friends_fingerprint_button = Button(
+            app_window,
+            text="Show users fingerprint",
+            command=lambda: self.get_friends_fingerprint(
+                show_friends_fingerprint_entry.get()
+            ),
+        )
+
+        show_friends_fingerprint_entry.grid(column=1, row=6, sticky=EW, padx=10, pady=5)
+        show_friends_fingerprint_button.grid(
+            column=0, row=6, sticky=EW, padx=10, pady=5
+        )
+
+        scan_ip_entry = Entry(app_window)
+        scan_ip_entry.grid(column=1, row=7, sticky=EW, padx=10, pady=5)
+
+        scan_ip_button = Button(
+            app_window,
+            text="Scan IP",
+            command=lambda: self.check_ip(scan_ip_entry.get()),
+        )
+        scan_ip_button.grid(column=0, row=7, sticky=EW, padx=10, pady=5)
+
         app_window.mainloop()
 
     def stop(self):
@@ -332,11 +377,11 @@ class FileShareApp:
         """Returns a list of all known friends' usernames."""
         return self.database.get_all_users()
 
-    def list_non_friends(self) -> list[str]:  # NOT implemented
+    def list_non_friends(self) -> list[str]:  #  Implemented
         """Returns all users that are known but are not our friends."""
         return self.database.get_all_users(False)
 
-    def befriend(self, username: str) -> bool:  # NOT implemented
+    def befriend(self, username: str) -> bool:  #  Implemented
         """Make a friend out of the user. Returns False if the user was already our friend."""
         return self.database.befriend(username)
 
