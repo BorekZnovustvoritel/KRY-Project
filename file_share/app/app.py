@@ -38,7 +38,6 @@ class FileShareApp:
         self.threads: list[StoppableThread] = []
         self.database = Database()
         self.file_path = ""
-        self.target_field = None
 
     # Helper methods for Tkinter interactions
     def get_file(self, app_window):
@@ -66,15 +65,6 @@ class FileShareApp:
             friends_listbox.insert(i, friend)
             i += 1
         friends_listbox.pack()
-        select_fren_button = Button(
-            top,
-            text="this one",
-            command=lambda: [
-                self.set_target(friends_listbox.get(ACTIVE)),
-                top.destroy(),
-            ],
-        )
-        select_fren_button.pack()
         top.mainloop()
 
     # Gets currently selected file from a listbox
@@ -183,6 +173,11 @@ class FileShareApp:
         print(fingerprint)
         fingerprint_label = Label(top, text=fingerprint)
         fingerprint_label.pack()
+    
+    def get_all_users(self):
+        friends = self.list_friends()
+        non_friends = self.list_non_friends()
+        return  friends+non_friends
 
     def start(self):
         """Start the application."""
@@ -219,12 +214,12 @@ class FileShareApp:
         list_friends_button.grid(column=0, row=2, sticky=EW, padx=10, pady=5)
 
         # Choose target for file sending
-        transfer_target_entry = Entry(app_window)
-        transfer_target_entry.grid(column=1, row=2, padx=10)
-        transfer_target_entry.insert(
-            0, "Input friend name here or use friend list to choose one"
-        )
-        self.target_field = transfer_target_entry
+      
+        transfer_targets = self.list_friends()
+        transfer_target_var = StringVar(app_window)
+        transefer_target_options = OptionMenu(app_window,transfer_target_var,*transfer_targets)
+        transefer_target_options.grid(column=1, row=2,sticky=EW, padx=10, pady=5)
+
 
         def send_file():
             if not self.file_path:
@@ -235,7 +230,7 @@ class FileShareApp:
                 message.show()
                 return
             status = self.send_sync(
-                self.prepare_file(self.file_path, transfer_target_entry.get())
+                self.prepare_file(self.file_path, transfer_target_var.get())
             )
             if status == SendStatus.SUCCESS:
                 message = tkinter.messagebox.Message(message="File sent successfully.")
@@ -301,17 +296,19 @@ class FileShareApp:
         )
         show_own_fingerprint_button.grid(column=0, row=5, sticky=EW, padx=10, pady=5)
 
-        show_friends_fingerprint_entry = Entry(app_window)
+        users=self.get_all_users()
+        fingerprint_user = StringVar(app_window)
+        show_friends_fingerprint_options = OptionMenu(app_window,fingerprint_user,*users)
 
         show_friends_fingerprint_button = Button(
             app_window,
             text="Show users fingerprint",
             command=lambda: self.get_friends_fingerprint(
-                show_friends_fingerprint_entry.get()
+                fingerprint_user.get()
             ),
         )
 
-        show_friends_fingerprint_entry.grid(column=1, row=6, sticky=EW, padx=10, pady=5)
+        show_friends_fingerprint_options.grid(column=1, row=6, sticky=EW, padx=10, pady=5)
         show_friends_fingerprint_button.grid(
             column=0, row=6, sticky=EW, padx=10, pady=5
         )
