@@ -1,10 +1,12 @@
-\contentsline {section}{\numberline {1}Installation}{1}{section.1}%
-\contentsline {section}{\numberline {2}GUI}{2}{section.10}%
-\contentsline {subsection}{\numberline {2.1}Login screen}{2}{subsection.11}%
-\contentsline {subsection}{\numberline {2.2}Main window}{2}{subsection.12}%
-\contentsline {subsubsection}{\numberline {2.2.1}File selection}{2}{subsubsection.13}%
-\contentsline {subsubsection}{\numberline {2.2.2}Friend addition}{2}{subsubsection.14}%
-\contentsline {subsubsection}{\numberline {2.2.3}Listing of users}{2}{subsubsection.15}%
-\contentsline {subsubsection}{\numberline {2.2.4}Listing queued files}{2}{subsubsection.16}%
-\contentsline {subsubsection}{\numberline {2.2.5}Friend selection}{2}{subsubsection.17}%
-\contentsline {subsubsection}{\numberline {2.2.6}File sharing}{2}{subsubsection.18}%
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Installation}{2}{section.2}%
+\contentsline {section}{\numberline {3}GUI}{3}{section.11}%
+\contentsline {subsection}{\numberline {3.1}Login screen}{3}{subsection.12}%
+\contentsline {subsection}{\numberline {3.2}Main window}{4}{subsection.15}%
+\contentsline {subsubsection}{\numberline {3.2.1}File selection}{4}{subsubsection.17}%
+\contentsline {subsubsection}{\numberline {3.2.2}User discovery and friend addition}{4}{subsubsection.18}%
+\contentsline {subsubsection}{\numberline {3.2.3}Listing of users}{5}{subsubsection.21}%
+\contentsline {subsubsection}{\numberline {3.2.4}Listing queued files}{5}{subsubsection.22}%
+\contentsline {subsubsection}{\numberline {3.2.5}Friend selection}{5}{subsubsection.23}%
+\contentsline {subsubsection}{\numberline {3.2.6}File sharing}{5}{subsubsection.24}%
+\contentsline {section}{\numberline {4}Functionality description}{7}{section.27}%
